@@ -10,6 +10,11 @@ class M_deposito extends Model
     {
         $res = $this->query("SELECT * FROM deposito");
         return $res;
-
     }
+
+    public function getIdSimpanan($id_tab)
+    {
+        return $this->query("SELECT id_simpanan FROM `deposito` WHERE id_dep = $id_tab");
+    }
+
 }

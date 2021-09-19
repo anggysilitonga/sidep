@@ -56,10 +56,15 @@ class Tabungan extends BaseController
     public function simulasiTabungan()
     {
         $rate = new M_bunga();
+        $tab = new M_tabungan();
         $jns_tab = $this->request->getPost("jns_tab");
         $nominal = $this->request->getPost("nominal");
         $jangka = $this->request->getPost("jangka");
-        $bungas = $rate->getByJns($jns_tab)->getResultArray();
+        $simp = $tab->getIdSimpanan($jns_tab)->getResult();
+        // dd($simp[0]);
+        foreach ($simp as $key) {
+            $bungas = $rate->getByJns($key->id_simpanan)->getResultArray();
+        }
 
         if ($nominal<100000) {
             $bunga = $bungas[0]['kat_1'];
@@ -82,7 +87,8 @@ class Tabungan extends BaseController
             'nominal' => rupiah($nominal),
             'profit' => rupiah($profit),
             'jangka' => $jangka,
-            'total' => rupiah($total)
+            'total' => rupiah($total),
+            'simpanan' => 'Tabungan'
         ];
 
         return view('tabungan/hasilSimulasiView', $data);
