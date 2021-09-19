@@ -40,6 +40,7 @@ $routes->get('/giro', 'Giro::index');
 $routes->get('/giro/info', 'Giro::info');
 $routes->get('/deposito/info', 'Deposito::info');
 $routes->get('/tabungan/info', 'Tabungan::info');
+$routes->get('/btabungan', 'Bunga::index');
 
 /*
  * --------------------------------------------------------------------

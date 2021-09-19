@@ -63,6 +63,13 @@
                     <li><a href="<?= base_url() ?>/giro/info">Giro</a></li>
                   </ul>
                 </li>
+                <li><a><i class="fa fa-money"></i>Suku Bunga</i> <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="<?= base_url() ?>/btabungan">Bunga Tabungan</a></li>
+                    <li><a href="<?= base_url() ?>/bdeposito">Bunga Deposito</a></li>
+                    <li><a href="<?= base_url() ?>/bgiro">Jasa Giro</a></li>
+                  </ul>
+              </li>
               </ul>
             </div>
           </div>
