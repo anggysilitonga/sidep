@@ -18,9 +18,8 @@ class M_tabungan extends Model
         return $this->query("SELECT deskripsi FROM `tabungan` WHERE id_tab = $id_tab");
     }
 
-    public function getIdSimpanan($id_tab)
+    public function getSimp($id_tab)
     {
         return $this->query("SELECT id_simpanan FROM `tabungan` WHERE id_tab = $id_tab");
-
     }
 }

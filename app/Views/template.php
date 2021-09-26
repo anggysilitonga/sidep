@@ -67,7 +67,7 @@
                   <ul class="nav child_menu">
                     <li><a href="<?= base_url() ?>/btabungan">Bunga Tabungan</a></li>
                     <li><a href="<?= base_url() ?>/bdeposito">Bunga Deposito</a></li>
-                    <li><a href="<?= base_url() ?>/bgiro">Jasa Giro</a></li>
+                    <li><a href="<?= base_url() ?>/bgiro">Jasa Giro</a></li> 
                   </ul>
               </li>
               </ul>
