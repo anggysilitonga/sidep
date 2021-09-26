@@ -54,13 +54,13 @@ class Tabungan extends BaseController
     }
 
     public function simulasiTabungan()
-    {
+    { 
         $rate = new M_bunga();
         $tab = new M_tabungan();
         $jns_tab = $this->request->getPost("jns_tab");
         $nominal = $this->request->getPost("nominal");
         $jangka = $this->request->getPost("jangka");
-        $simp = $tab->getIdSimpanan($jns_tab)->getResult();
+        $simp = $tab->getSimp($jns_tab)->getResult();
         // dd($simp[0]);
         foreach ($simp as $key) {
             $bungas = $rate->getByJns($key->id_simpanan)->getResultArray();
