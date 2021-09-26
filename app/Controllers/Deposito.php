@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\M_deposito;
 use App\Models\M_bunga;
+use App\Models\M_fo;
+use App\Models\M_cabang;
 
 
 class Deposito extends BaseController
@@ -34,6 +36,7 @@ class Deposito extends BaseController
     {
         $rate = new M_bunga();
         $dep = new M_deposito();
+        $cab = new M_cabang();
         $jns_dep = $this->request->getPost("jns_dep");
         $nominal = $this->request->getPost("nominal");
         $jangka = $this->request->getPost("jangka");
@@ -75,14 +78,31 @@ class Deposito extends BaseController
         function rupiah($angka){
            return "Rp " . number_format($angka,2,',','.');
         } 
+        $cabang = $cab->getAll()->getResult();
         $data = [
             'simpanan' => 'Deposito',
             'nominal' => rupiah($nominal),
             'profit' => rupiah($profit),
             'jangka' => $jangka,
-            'total' => rupiah($total)
+            'total' => rupiah($total),
+            'cabang' => $cabang
         ];
 
         return view('tabungan/hasilSimulasiView', $data);
+    }
+
+    public function getFo()
+    {
+        $fo = new M_fo();
+        $cab = new M_cabang();
+        $id_cab = $this->request->getPost("id_cab");
+        $cabang = $cab->getCab($id_cab)->getResultArray();
+        $nama = $fo->getByCab($id_cab)->getResultArray();
+        $data = [
+            'cabang' => $cabang[0],
+            'nama' => $nama
+        ];
+        // dd($data);
+        return view('fo/infoFoView', $data);
     }
 }

@@ -36,14 +36,17 @@
         </form>
         <?php if ($simpanan == 'Deposito') : ?>
             <p>Silahkan Hubungi Funding Officer di Kantor Cabang Bank Papua Terdekat</p>
-            <form class="form-horizontal form-label-left" action="" method="post">
+            <form class="form-horizontal form-label-left" action="<?= base_url() ?>/Deposito/getFo" method="post" target="_blank">
                 <div class="form-group row">
                     <label class="control-label col-md-3" for="last-name">Pilih Cabang Terdekat</label>
                     <div class="col-md-3">
-                        <select name="jns_dep" id="heard" class="form-control" required  >
-                            <option value="100" >Kantor Cabang Utama</option>
+                        <select name="id_cab" id="heard" class="form-control" required  >
+                            <?php foreach ($cabang as $key): ?>
+                                <option value="<?= $key->id_cabang?>"><?= $key->nama_cabang ?></option>    
+                            <?php endforeach; ?>    
+                        <!-- <option value="100" >Kantor Cabang Utama</option>
                             <option value="160" >Cabang Yogyakarta</option>
-                            <option value="103" >Cabang Sarmi</option>
+                            <option value="103" >Cabang Sarmi</option> -->
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -52,30 +55,4 @@
                 </div>
             </form>
         <?php endif; ?>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel2">Modal title</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h4>Text in a modal</h4>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-    </div>
-</div>
 <?= $this->endSection() ?>
