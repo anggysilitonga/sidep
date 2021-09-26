@@ -22,7 +22,7 @@
 					
 				</select>
 			<label for="fullname">Nominal * :</label>
-			<input type="text" id="fullname" class="form-control" name="nominal" required />
+			<input type="number" id="fullname" class="form-control" name="nominal" required />
 
 			<label for="email">Jangka Waktu * :</label>
 			<input type="text" id="email" class="form-control" name="jangka" data-parsley-trigger="change" required />

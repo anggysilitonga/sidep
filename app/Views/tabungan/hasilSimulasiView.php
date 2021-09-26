@@ -55,4 +55,6 @@
                 </div>
             </form>
         <?php endif; ?>
+    </div>
+</div>
 <?= $this->endSection() ?>

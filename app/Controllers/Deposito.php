@@ -54,7 +54,6 @@ class Deposito extends BaseController
                 $bungas = $rate->getByJns($key->id_simpanan+4)->getResultArray();
             } else {
                 $bungas = $rate->getByJns($key->id_simpanan)->getResultArray();
-
             }
         }
 
