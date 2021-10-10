@@ -36,12 +36,14 @@
 	
 </div>
 <script type="text/javascript">
-		
 		var rupiah = document.getElementById('rupiah');
+		let temp = '';
 		rupiah.addEventListener('keyup', function(e){
 			// tambahkan 'Rp.' pada saat form di ketik
 			// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+			// rupiah.value = formatRupiah(this.value, 'Rp. ');
 			rupiah.value = formatRupiah(this.value, 'Rp. ');
+			console.log(rupiah.value);
 		});
  
 		/* Fungsi formatRupiah */

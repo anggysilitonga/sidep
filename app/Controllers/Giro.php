@@ -33,10 +33,31 @@ class Giro extends BaseController
 
     public function simulasiGiro()
     {
+
+        function RpToInt($num)
+        {
+            $res = array();
+            $arr = str_split($num);
+            // $arr = ['R','p','.',' ','1','.','0','0','0']
+            //$res = []
+            foreach ($arr as $key ) {
+                if (is_numeric($key)) {
+                    $res[] = $key;
+                    //$res = [1]
+                    //$res = [1,0]
+                    //$res = [1,0,0]
+                    //$res = [1,0,0,0]
+                    // echo $key;
+                    // echo "<br>";
+                    // var_dump(implode($res));
+                }
+            }
+            return implode($res); //1000
+        }
         $bunga = new M_bunga();
         $giro = new M_giro();
         $id_giro = $this->request->getPost("id_giro");
-        $nominal = $this->request->getPost("nominal");
+        $nominal = RpToInt($this->request->getPost("nominal"));
         $jangka = $this->request->getPost("jangka");
         $simp = $giro->getIdSimpanan($id_giro)->getResult();
 
@@ -81,6 +102,8 @@ class Giro extends BaseController
             'profit' => rupiah($profit),
             'jangka' => $jangka,
             'total' => rupiah($total),
+
+
         ];
 
         return view('tabungan/hasilSimulasiView', $data);

@@ -8,15 +8,16 @@ use App\Models\M_bunga;
 
 class Tabungan extends BaseController
 {
+
+   
     public function index()
     {
         $tabungan = new M_tabungan();
         $res = $tabungan->getTab()->getResultArray();
         // dd($res);
         $data = [
-            'res' => $res,
+            'res' => $res
         ];
-        
         return view('tabungan/tabunganView', $data);
     }
 
@@ -53,12 +54,34 @@ class Tabungan extends BaseController
         return view('tabungan/infoTabView', $data);
     }
 
+    
     public function simulasiTabungan()
     { 
+        function RpToInt($num)
+        {
+            $res = array();
+            $arr = str_split($num);
+            // $arr = ['R','p','.',' ','1','.','0','0','0']
+            //$res = []
+            foreach ($arr as $key ) {
+                if (is_numeric($key)) {
+                    $res[] = $key;
+                    //$res = [1]
+                    //$res = [1,0]
+                    //$res = [1,0,0]
+                    //$res = [1,0,0,0]
+                    // echo $key;
+                    // echo "<br>";
+                    // var_dump(implode($res));
+                }
+            }
+            return implode($res); //1000
+        }
         $rate = new M_bunga();
         $tab = new M_tabungan();
         $jns_tab = $this->request->getPost("jns_tab");
-        $nominal = $this->request->getPost("nominal");
+        $nominal = RpToInt($this->request->getPost("nominal"));
+        // die();
         $jangka = $this->request->getPost("jangka");
         $simp = $tab->getSimp($jns_tab)->getResult();
         // dd($simp[0]);
@@ -78,7 +101,10 @@ class Tabungan extends BaseController
             $bunga = $bungas[0]['kat_5'];
         }
 
-        $profit = $nominal*$bunga*($jangka*30/360); //keuntungan ketika dia nabung, bukan total saldo akhir seyeng
+        // var_dump($nominal, $bunga, $jangka);
+        // die();
+
+        $profit = $nominal*$bunga*($jangka*30/360); //keuntungan ketika dia nabung, bukan total saldo akhir ///jangka dalam per hari //konversi bulan ke hari
         $total = $profit + $nominal;
         function rupiah($angka){
            return "Rp " . number_format($angka,2,',','.');
@@ -93,4 +119,6 @@ class Tabungan extends BaseController
 
         return view('tabungan/hasilSimulasiView', $data);
     }
+
+   
 }

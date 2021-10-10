@@ -8,7 +8,7 @@ class M_user extends Model
     
     public function cek_login($username, $password)
     {
-    	$res = $this->query("SELECT * FROM user where username = '$username' and password = $password");
+    	$res = $this->query("SELECT * FROM user where username = '$username'");
     	return $res;
     }
 }

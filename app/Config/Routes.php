@@ -33,6 +33,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/admin', 'Home::loginPage');
 $routes->get('/home/dashboard', 'Home::dashboard');
 $routes->get('/tabungan', 'Tabungan::index');
 $routes->get('/deposito', 'Deposito::index');

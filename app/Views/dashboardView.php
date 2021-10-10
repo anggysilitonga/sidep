@@ -8,7 +8,7 @@
 		<div class="clearfix"></div>
 	</div>
 	<div class="x_content">
-
+		
 		<!-- Konten tabunganmu seyeng -->
 		<div class="menu-dash">
 			<a href="<?= base_url()?>/tabungan">

@@ -10,6 +10,7 @@ use App\Models\M_cabang;
 
 class Deposito extends BaseController
 {
+    
     public function index()
     {
         $deposito = new M_deposito();
@@ -34,11 +35,32 @@ class Deposito extends BaseController
     }
     public function simulasiDeposito()
     {
+
+        function RpToInt($num)
+        {
+            $res = array();
+            $arr = str_split($num);
+            // $arr = ['R','p','.',' ','1','.','0','0','0']
+            //$res = []
+            foreach ($arr as $key ) {
+                if (is_numeric($key)) {
+                    $res[] = $key;
+                    //$res = [1]
+                    //$res = [1,0]
+                    //$res = [1,0,0]
+                    //$res = [1,0,0,0]
+                    // echo $key;
+                    // echo "<br>";
+                    // var_dump(implode($res));
+                }
+            }
+            return implode($res); //1000
+        }
         $rate = new M_bunga();
         $dep = new M_deposito();
         $cab = new M_cabang();
         $jns_dep = $this->request->getPost("jns_dep");
-        $nominal = $this->request->getPost("nominal");
+        $nominal = RpToInt($this->request->getPost("nominal"));
         $jangka = $this->request->getPost("jangka");
         // dd($jns_dep, $nominal, $jangka);
         $simp = $dep->getIdSimpanan($jns_dep)->getResult();

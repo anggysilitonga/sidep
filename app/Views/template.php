@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php $session = session() ?>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
@@ -35,11 +35,10 @@
 
           <div class="profile clearfix">
             <div class="profile_pic">
-              <img src="<?= base_url() ?>/assets/gentelella/images/picture.jpg" alt="..." class="img-circle profile_img">
+              <img src="<?= base_url() ?>/assets/gentelella/images/logo1.png" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-              <span>Welcome, </span>
-              <h2>AJS</h2>
+              <span>Welcome, <?= $session->get('username')?> </span>
             </div>
           </div>
 
@@ -63,16 +62,20 @@
                     <li><a href="<?= base_url() ?>/giro/info">Giro</a></li>
                   </ul>
                 </li>
-                <li><a><i class="fa fa-money"></i>Suku Bunga</i> <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="<?= base_url() ?>/btabungan">Bunga Tabungan</a></li>
-                    <li><a href="<?= base_url() ?>/bdeposito">Bunga Deposito</a></li>
-                    <li><a href="<?= base_url() ?>/bgiro">Jasa Giro</a></li> 
-                  </ul>
-              </li>
-              </ul>
+                <?php if ($session->get('type') == 'admin' ):?>
+                    <li><a><i class="fa fa-money"></i>Suku Bunga</i> <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="<?= base_url() ?>/btabungan">Bunga Tabungan</a></li>
+                        <li><a href="<?= base_url() ?>/bdeposito">Bunga Deposito</a></li>
+                        <li><a href="<?= base_url() ?>/bgiro">Jasa Giro</a></li> 
+                      </ul>
+                   </li>
+                <?php endif?>
+
+                
+                </ul>
+              </div>
             </div>
-          </div>
 
           <div class="sidebar-footer hidden-small">
             <a data-toggle="tooltip" data-placement="top" title="Settings">
@@ -96,89 +99,23 @@
           <div class="nav toggle">
             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
           </div>
-          <nav class="nav navbar-nav">
-            <ul class=" navbar-right">
-              <li class="nav-item dropdown open" style="padding-left: 15px;">
-                <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                  <img src="<?= base_url() ?>/assets/gentelella/images/img.jpg" alt="">John Doe
-                </a>
-                <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="javascript:;"> Profile</a>
-                  <a class="dropdown-item" href="javascript:;">
-                    <span class="badge bg-red pull-right">50%</span>
-                    <span>Settings</span>
+          <?php if ($session->get('type') == 'admin' ):?>
+            <nav class="nav navbar-nav">
+              <ul class=" navbar-right">
+                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                    <img src="<?= base_url() ?>/assets/gentelella/images/user.png" alt=""><?=$session->get('name')?>
                   </a>
-                  <a class="dropdown-item" href="javascript:;">Help</a>
-                  <a class="dropdown-item" href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                </div>
-              </li>
-
-              <li role="presentation" class="nav-item dropdown open">
-                <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                  <i class="fa fa-envelope-o"></i>
-                  <span class="badge bg-green">6</span>
-                </a>
-                <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                  <li class="nav-item">
-                    <a class="dropdown-item">
-                      <span class="image"><img src="<?= base_url() ?>/assets/gentelella/images/img.jpg" alt="Profile Image" /></span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="dropdown-item">
-                      <span class="image"><img src="<?= base_url() ?>/assets/gentelella/images/img.jpg" alt="Profile Image" /></span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="dropdown-item">
-                      <span class="image"><img src="<?= base_url() ?>/assets/gentelella/images/img.jpg" alt="Profile Image" /></span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message"> 
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="dropdown-item">
-                      <span class="image"><img src="<?= base_url() ?>/assets/gentelella/images/img.jpg" alt="Profile Image" /></span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <div class="text-center">
-                      <a class="dropdown-item">
-                        <strong>See All Alerts</strong>
-                        <i class="fa fa-angle-right"></i>
-                      </a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
+                  <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                    
+                    <a class="dropdown-item" href="<?=base_url()?>/Home/Logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                  </div>
+                </li>
+  
+                
+              </ul>
+            </nav>
+          <?php endif; ?>
         </div>
       </div>
       <div class="right_col" role="main">
@@ -186,7 +123,7 @@
       </div>
       <footer>
         <div class="pull-right">
-          Simulasi Perhitungan DPK - Angri Juwita Silitonga
+          Simulasi Perhitungan Bunga Simpanan
         </div>
         <div class="clearfix"></div>
       </footer>
