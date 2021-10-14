@@ -13,7 +13,7 @@ class Deposito extends BaseController
     
     public function index()
     {
-        $deposito = new M_deposito();
+        $deposito = new M_deposito(); 
         $res = $deposito->getDep()->getResultArray();
         $data = [
             'res' => $res,
@@ -31,7 +31,28 @@ class Deposito extends BaseController
 
     public function info()
     {
-        return view('deposito/infoDepoView');
+        $deposito = new M_deposito();
+        $res = $deposito->getDep()->getResultArray();
+        $data = [
+            'res' => $res
+        ];
+        return view('deposito/infoDepoView', $data);
+    }
+
+    public function getInfo()
+    {
+        $deposito = new M_deposito();
+        $res = $deposito->getDep()->getResultArray();
+        
+        $id_tab = $this->request->getPost('id_tab');
+        $desc = $deposito->getInfo($id_tab)->getRow();
+        
+        $data = [
+            'res' => $res,
+            'desc' => $desc,
+            'id_tab' => $id_tab
+        ];
+        return view('deposito/infoDepoView', $data);
     }
     public function simulasiDeposito()
     {

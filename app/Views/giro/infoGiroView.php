@@ -12,13 +12,13 @@
 	<div class="x_content">
 
 		<!-- Konten tabunganmu seyeng -->
-        <form action="<?= base_url() ?>/Tabungan/getInfo" method="post" id="demo-form">
-            <label for="heard">Pilih Jenis Tabungan:</label>
+        <form action="<?= base_url() ?>/Giro/getInfo" method="post" id="demo-form">
+            <label for="heard">Pilih Jenis Giro:</label>
             <div class="select-row">
 				<select name="id_tab" id="heard" class="form-control" required style="width : 90%">
-					<option disabled >Pilih jenis tabungan</option>
+					<option disabled >Pilih jenis giro</option>
 					<?php foreach ($res as $key ):?>
-						<option value="<?= $key['id_tab'] ?>" <?php if(isset($id_tab) && $key['id_tab'] == $id_tab ){ echo "selected"; } ?> ><?= $key['jenis_tab']?></option>
+						<option value="<?= $key['id_giro'] ?>" <?php if(isset($id_tab) && $key['id_giro'] == $id_tab ){ echo "selected"; }?>><?= $key['jenis_giro']?></option>
 					<?php endforeach;?>
 				</select>
                 <button type="submit" class="btn btn-success">Pilih</button>

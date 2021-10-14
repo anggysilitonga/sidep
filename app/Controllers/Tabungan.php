@@ -1,16 +1,14 @@
 <?php
 
 namespace App\Controllers;
-
 use App\Models\M_tabungan;
 use App\Models\M_bunga;
-
 
 class Tabungan extends BaseController
 {
 
    
-    public function index()
+    public function index() 
     {
         $tabungan = new M_tabungan();
         $res = $tabungan->getTab()->getResultArray();
@@ -49,7 +47,8 @@ class Tabungan extends BaseController
         
         $data = [
             'res' => $res,
-            'desc' => $desc
+            'desc' => $desc,
+            'id_tab' => $id_tab
         ];
         return view('tabungan/infoTabView', $data);
     }
@@ -61,18 +60,9 @@ class Tabungan extends BaseController
         {
             $res = array();
             $arr = str_split($num);
-            // $arr = ['R','p','.',' ','1','.','0','0','0']
-            //$res = []
             foreach ($arr as $key ) {
                 if (is_numeric($key)) {
                     $res[] = $key;
-                    //$res = [1]
-                    //$res = [1,0]
-                    //$res = [1,0,0]
-                    //$res = [1,0,0,0]
-                    // echo $key;
-                    // echo "<br>";
-                    // var_dump(implode($res));
                 }
             }
             return implode($res); //1000
@@ -81,10 +71,8 @@ class Tabungan extends BaseController
         $tab = new M_tabungan();
         $jns_tab = $this->request->getPost("jns_tab");
         $nominal = RpToInt($this->request->getPost("nominal"));
-        // die();
         $jangka = $this->request->getPost("jangka");
         $simp = $tab->getSimp($jns_tab)->getResult();
-        // dd($simp[0]);
         foreach ($simp as $key) {
             $bungas = $rate->getByJns($key->id_simpanan)->getResultArray();
         }

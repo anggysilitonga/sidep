@@ -17,4 +17,10 @@ class M_deposito extends Model
         return $this->query("SELECT id_simpanan FROM `deposito` WHERE id_dep = $id_tab");
     }
 
+    public function getInfo($id_dep)
+    {
+        return $this->query("SELECT deskripsi FROM `deposito` WHERE id_dep = $id_dep");
+    }
+
+
 }

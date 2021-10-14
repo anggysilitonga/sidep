@@ -15,6 +15,10 @@ class M_giro extends Model
     public function getIdSimpanan($id)
     {
         return $this->query("SELECT id_simpanan FROM `giro` WHERE id_giro = $id");
+    }
 
+    public function getInfo($id_giro)
+    {
+        return $this->query("SELECT deskripsi FROM `giro` WHERE id_giro = $id_giro");
     }
 }
