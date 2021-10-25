@@ -92,7 +92,7 @@ class Tabungan extends BaseController
         // var_dump($nominal, $bunga, $jangka);
         // die();
 
-        $profit = $nominal*$bunga*($jangka*30/360); //keuntungan ketika dia nabung, bukan total saldo akhir ///jangka dalam per hari //konversi bulan ke hari
+        $profit = $nominal*$bunga*($jangka*30/365); //keuntungan ketika dia nabung, bukan total saldo akhir ///jangka dalam per hari //konversi bulan ke hari
         $total = $profit + $nominal;
         function rupiah($angka){
            return "Rp " . number_format($angka,2,',','.');

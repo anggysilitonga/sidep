@@ -9,10 +9,18 @@ class Home extends BaseController
 	public function index()
 	{
 		$session = session();
-		$arr = [
-			'username' => 'visitor',
-			'type' => 'visitor'
-		];
+		if ($session->get('type') == 'admin' ){
+			$arr = [
+				'username' => 'anggi',
+				'name' => 'Anggi Silitonga',
+				'type' => 'admin'
+			];
+		} else {
+			$arr = [
+				'username' => 'visitor',
+				'type' => 'visitor'
+			];
+		}
 		$session->set($arr);
 		return view('dashboardView');
 	}

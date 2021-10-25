@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use App\Models\M_tabungan;
+use App\Models\M_giro;
+use App\Models\M_deposito;
 use App\Models\M_bunga;
 
 
@@ -19,12 +21,20 @@ class Bunga extends BaseController
     {
         $tabungan = new M_tabungan();
         $res = $tabungan->getTab()->getResultArray();
-        // dd($res);
         $data = [
             'res' => $res,
         ];
-
         return view('bunga/bungaTabunganView', $data);
+    }
+
+    public function bungaGiro()
+    {
+        $giro = new M_giro();
+        $res = $giro->getGiro()->getResultArray();
+        $data = [
+            'res' => $res,
+        ];
+        return view('bunga/bungaGiroView', $data);
     }
 
     public function getBunga()
@@ -38,7 +48,20 @@ class Bunga extends BaseController
             'res' => $res,
             'id_bunga' => $res[0]['id_bunga']
         ];
-
+        return view('bunga/bungaDetView', $data);
+    }
+    public function getBungaGiro()
+    {
+        $bunga = new M_bunga();
+        $giro = new M_giro();
+        $id_giro = $this->request->getPost('id_giro');
+        $id_simp = $giro->getIdSimpanan($id_giro)->getResultArray();
+        $res = $bunga->getByJns($id_simp[0]['id_simpanan'])->getResultArray();
+        $data = [
+            'res' => $res,
+            'id_bunga' => $res[0]['id_bunga']
+        ];
+        // dd($res);
         return view('bunga/bungaDetView', $data);
     }
 

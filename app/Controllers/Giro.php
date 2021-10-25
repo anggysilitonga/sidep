@@ -105,7 +105,7 @@ class Giro extends BaseController
         }
     
         // $profit = $nominal*$bunga*($jangka/12); //keuntungan ketika dia nabung, bukan total saldo akhir seyeng
-        $profit = $nominal*$bunga*($jangka*30/360); //keuntungan ketika dia nabung, bukan total saldo akhir seyeng
+        $profit = $nominal*$bunga*($jangka*30/365); //keuntungan ketika dia nabung, bukan total saldo akhir seyeng
         $total = $profit + $nominal;
         // dd($profit, $total, $nominal, $bunga);
         function rupiah($angka){
